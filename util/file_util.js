@@ -22,7 +22,7 @@ module.exports.getDB = (userid, callback) => {
 
 module.exports.register = (userid, usertag, callback) => {
     if(fs.existsSync('./data/' + userid + '.json')) {
-        return {error: 'already_exists'}
+        callback({error: 'already_exists'})
     } else {
     
         let newData = datatemplate

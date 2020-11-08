@@ -2,6 +2,7 @@ const discord = require('discord.js')
 const client = new discord.Client()
 
 const fu = require('./util/file_util')
+const {isInputedThatCommand, getErrorEmbed, getSuccessEmbed} = require('./util/command_util')
 
 
 // 만약에 클라이언트가 준비되었다면, 아래의코드를 실행합니다
@@ -23,17 +24,17 @@ client.on('message', (msg) => {
         return msg.channel.send('DM에서는 이용하실 수 없습니다.')
     }
 
-    if(msg.content.startsWith('!클리어') && !isNaN(parseInt(msg.content.split(' ')[1]))) {
-        msg.channel.bulkDelete(parseInt(msg.content.split(' ')[1]) + 1)
+    if(isInputedThatCommand(msg.content, '클리어') && !isNaN(parseInt(msg.content.split(' ')[2]))) {
+        msg.channel.bulkDelete(parseInt(msg.content.split(' ')[2]) + 1)
     }
 
     if(msg.author !== client.user) {
-        if(msg.content === '!핑') {
+        if(isInputedThatCommand(msg.content, '퐁')) {
             msg.channel.send('퐁!');
         }
     }
 
-    if (msg.content === '!내정보') {
+    if (isInputedThatCommand(msg.content, '내정보')) {
         fu.getDB(msg.member.id, (result) => {
             if(result.error !== undefined) {
                 if(result.error === 'nodata') {
@@ -60,35 +61,39 @@ client.on('message', (msg) => {
         
     }
 
-    if (msg.content === '!가입') {
+    if (isInputedThatCommand(msg.content, '가입')) {
         const result = fu.register(msg.member.id, msg.author.tag, (result) => {
             if(result.error !== undefined) {
                 if(result.error === 'already_exists') {
-                    msg.channel.send('이미 가입이 되어있습니다.')
+                    const embed = getErrorEmbed('이미 가입되어있습니다!')
+                    msg.channel.send(embed);
                     return
                 } else {
-                    msg.channel.send('오류가 발생하였습니다. `' + result.error + '`')
+                    const embed = getErrorEmbed('`' + result.error + '`')
+                    msg.channel.send(embed);
+                    //msg.channel.send('오류가 발생하였습니다. `' + result.error + '`')
                     return
                 }
             }
-            msg.channel.send('<a:check:773020764990996540> 성공적으로 가입되었습니다.')
+            msg.channel.send(getSuccessEmbed('성공적으로 가입되었습니다.'))
+            //msg.channel.send('<a:check:774797069138657290> 성공적으로 가입되었습니다.')
         })
 
         
     }
 
-    if (msg.content === "!도박") {
+    if (isInputedThatCommand(msg.content, '도박')) {
 
     }
 
 
     
-    if (msg.content === '!아바타') {
+    if (isInputedThatCommand(msg.content, '프사')) {
         // Send the user's avatar URL
         msg.channel.send(msg.author.displayAvatarURL());
     }
 
-    if(msg.content === '!임배드') {
+    if(isInputedThatCommand(msg.content, '임배드')) {
         const embed = new discord.MessageEmbed()
             .setTitle('A slick little embed')
             // Set the color of the embed
@@ -100,34 +105,28 @@ client.on('message', (msg) => {
         msg.channel.send(embed);
       }
 
-      if(msg.content === '!현재시각') {
-            //msg.channel.send('date')
+      if(isInputedThatCommand(msg.content, '현재시각')) {
             let date = new Date()
-
             const embed = new discord.MessageEmbed()
             .setTitle('현재 시각입니다. (서버 위치 기준)')
-            // Set the color of the embed
             .setColor(0xff0000)
-            // Set the main content of the embed
             .setDescription(`${date.getHours()}시 ${date.getMinutes()}분 ${date.getSeconds()}초`)
             /*
             .addField('시', date.getHours())
             .addField('분', date.getMinutes())
             .addField('초', date.getSeconds())
             */
-            // Send the embed to the same channel as the message
             msg.channel.send(embed);
-
             //msg.channel.send(`${date.getHours()}시 ${date.getMinutes()}분 ${date.getSeconds()}초`)
         }
 
         // 여기 안쪽에 적어주세요 :)
         
-        if(msg.content === '!검색') {
+        if(isInputedThatCommand(msg.content, '검색')) {
 
         }
         
-    if(msg.content === '!상메') {
+    if(isInputedThatCommand(msg.content, '상메')) {
         
     }
 
