@@ -42,9 +42,10 @@ module.exports.isInputedThatCommand = (message, command) => {
 
 module.exports.getSuccessEmbed = (desc) => {
     const embed = new MessageEmbed()
-        .setTitle('<a:check_yes:774795433901293580> 성공!')
+        .setTitle('<a:check_yes:774797069138657290> 성공!')
         .setColor(0x00ff00)
         .setDescription(desc);
 
     return embed
  }
+ //
