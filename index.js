@@ -1,5 +1,10 @@
 const discord = require('discord.js')
+const fs = require('fs')
+const path = require('path')
+
 const client = new discord.Client()
+
+let commands = []
 
 const fu = require('./util/file_util')
 const {isInputedThatCommand, getErrorEmbed, getSuccessEmbed} = require('./util/command_util')
@@ -24,6 +29,14 @@ client.on('message', (msg) => {
         return msg.channel.send('DM에서는 이용하실 수 없습니다.')
     }
 
+    commands.forEach((elem) => {
+        console.log(elem)
+        if(isInputedThatCommand(msg.content, elem.name)) {
+            elem.onCommand(client, msg)
+        }
+    })
+
+    /*
     if(isInputedThatCommand(msg.content, '클리어') && !isNaN(parseInt(msg.content.split(' ')[2]))) {
         msg.channel.bulkDelete(parseInt(msg.content.split(' ')[2]) + 1)
     }
@@ -115,24 +128,23 @@ client.on('message', (msg) => {
             .addField('시', date.getHours())
             .addField('분', date.getMinutes())
             .addField('초', date.getSeconds())
-            */
             msg.channel.send(embed);
             //msg.channel.send(`${date.getHours()}시 ${date.getMinutes()}분 ${date.getSeconds()}초`)
         }
 
         // 여기 안쪽에 적어주세요 :)
-        
-        if(isInputedThatCommand(msg.content, '검색')) {
-
-        }
-        
-    if(isInputedThatCommand(msg.content, '상메')) {
-        
-    }
+        */
 
 });
 
-
+console.log('명령어 로딩중...')
+const list = fs.readdirSync('./commands/')
+list.forEach((elem) => {
+    if(elem.endsWith('.js')) {
+        commands[commands.length] = require('./commands/' + elem.replace('.js', ''))
+        console.log(elem.replace('.js', '') + ' 로딩 완료!')
+    }
+})
 
 // 디스코드 토큰으로 디스코드에 로그인합니다
 client.login(`NzczMTUzMzcyNTkyNTM3NjIx.X6FFMA.kmLO6bC90K9lmsVDG0CZAhU-isE`); // 네?
