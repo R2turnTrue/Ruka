@@ -30,7 +30,6 @@ client.on('message', (msg) => {
     }
 
     commands.forEach((elem) => {
-        console.log(elem)
         if(isInputedThatCommand(msg.content, elem.name)) {
             elem.onCommand(client, msg)
         }
