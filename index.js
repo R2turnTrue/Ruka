@@ -6,6 +6,8 @@ const client = new discord.Client()
 
 let commands = []
 
+Enumerator
+
 const fu = require('./util/file_util')
 const {isInputedThatCommand, getErrorEmbed, getSuccessEmbed} = require('./util/command_util')
 
@@ -15,12 +17,6 @@ const {isInputedThatCommand, getErrorEmbed, getSuccessEmbed} = require('./util/c
 client.once('ready', () => {
   console.log("디스코드 봇이 준비되었습니다");
 });
-
-// 히익 왜 node_modules가 없....A
-// 수정하ㅣㅅ고 저장하시면 몇초 뒤 바로 반영됩니다
-// 지금 보니 버그가 꽤 많네요
-//흑..저는 아직도 초보임당..
-// 하다보면ㅠ나져요 감사합니당!
 
 
 client.on('message', (msg) => {
