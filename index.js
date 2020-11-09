@@ -4,32 +4,30 @@ const path = require('path')
 
 const client = new discord.Client()
 
-let commands = []
+const commands = []
 
 const fu = require('./util/file_util')
-const {isInputedThatCommand, getErrorEmbed, getSuccessEmbed} = require('./util/command_util')
-
+const { isInputedThatCommand, getErrorEmbed, getSuccessEmbed } = require('./util/command_util')
 
 // 만약에 클라이언트가 준비되었다면, 아래의코드를 실행합니다
 // 이 이벤트는 봇이 로그인 되고 한번만 실행될것입니다
 client.once('ready', () => {
-  console.log("디스코드 봇이 준비되었습니다");
-});
-
+  console.log('디스코드 봇이 준비되었습니다')
+})
 
 client.on('message', (msg) => {
-    if(msg.author.bot) return
-    if(msg.channel.type === 'dm') {
-        return msg.channel.send('DM에서는 이용하실 수 없습니다.')
+  if (msg.author.bot) return
+  if (msg.channel.type === 'dm') {
+    return msg.channel.send('DM에서는 이용하실 수 없습니다.')
+  }
+
+  commands.forEach((elem) => {
+    if (isInputedThatCommand(msg.content, elem.name)) {
+      elem.onCommand(client, msg)
     }
+  })
 
-    commands.forEach((elem) => {
-        if(isInputedThatCommand(msg.content, elem.name)) {
-            elem.onCommand(client, msg)
-        }
-    })
-
-    /*
+  /*
     if(isInputedThatCommand(msg.content, '클리어') && !isNaN(parseInt(msg.content.split(' ')[2]))) {
         msg.channel.bulkDelete(parseInt(msg.content.split(' ')[2]) + 1)
     }
@@ -50,7 +48,7 @@ client.on('message', (msg) => {
                 msg.channel.send('오류가 발생하였습니다. `' + result.error + '`')
                 return
             }
-            
+
             //msg.channel.send(JSON.stringify(result))
 
             const embed = new discord.MessageEmbed()
@@ -63,8 +61,7 @@ client.on('message', (msg) => {
             // Send the embed to the same channel as the message
             msg.channel.send(embed);
         })
-        
-        
+
     }
 
     if (isInputedThatCommand(msg.content, '가입')) {
@@ -85,15 +82,12 @@ client.on('message', (msg) => {
             //msg.channel.send('<a:check:774797069138657290> 성공적으로 가입되었습니다.')
         })
 
-        
     }
 
     if (isInputedThatCommand(msg.content, '도박')) {
 
     }
 
-
-    
     if (isInputedThatCommand(msg.content, '프사')) {
         // Send the user's avatar URL
         msg.channel.send(msg.author.displayAvatarURL());
@@ -127,17 +121,16 @@ client.on('message', (msg) => {
 
         // 여기 안쪽에 적어주세요 :)
         */
-
-});
+})
 
 console.log('명령어 로딩중...')
 const list = fs.readdirSync('./commands/')
 list.forEach((elem) => {
-    if(elem.endsWith('.js')) {
-        commands[commands.length] = require('./commands/' + elem.replace('.js', ''))
-        console.log(elem.replace('.js', '') + ' 로딩 완료!')
-    }
+  if (elem.endsWith('.js')) {
+    commands[commands.length] = require('./commands/' + elem.replace('.js', ''))
+    console.log(elem.replace('.js', '') + ' 로딩 완료!')
+  }
 })
 
 // 디스코드 토큰으로 디스코드에 로그인합니다
-client.login(`NzczMTUzMzcyNTkyNTM3NjIx.X6FFMA.kmLO6bC90K9lmsVDG0CZAhU-isE`); // 네?
+client.login('NzczMTUzMzcyNTkyNTM3NjIx.X6FFMA.kmLO6bC90K9lmsVDG0CZAhU-isE') // 네?

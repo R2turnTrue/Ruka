@@ -5,10 +5,10 @@ const cu = require('../util/command_util')
 const fu = require('../util/file_util')
 
 /**
- * 
- * @param {discord.Client} client 
- * @param {discord.Message} msg 
+ *
+ * @param {discord.Client} client
+ * @param {discord.Message} msg
  */
 module.exports.onCommand = (client, msg) => {
-    msg.channel.send(msg.author.displayAvatarURL());
+  msg.channel.send(msg.author.displayAvatarURL())
 }
