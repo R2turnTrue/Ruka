@@ -20,7 +20,7 @@ module.exports.onCommand = (client, msg) => {
       return
     }
 
-    if (result.dobak_machine_num == 3) {
+    if (result.dobak_machine_num === 3) {
       msg.channel.send('하루 도박 제한에 도달해서 도박을 할 수 없습니다. 내일 다시 와주세요! :)')
       return
     }
