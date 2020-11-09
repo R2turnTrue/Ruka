@@ -6,8 +6,6 @@ const client = new discord.Client()
 
 let commands = []
 
-Enumerator
-
 const fu = require('./util/file_util')
 const {isInputedThatCommand, getErrorEmbed, getSuccessEmbed} = require('./util/command_util')
 
