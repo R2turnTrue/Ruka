@@ -11,11 +11,10 @@ const fu = require('../util/file_util')
  */
 module.exports.onCommand = (client, msg) => {
   if (!isNaN(parseInt(msg.content.split(' ')[2]))) {
-    if(msg.member.hasPermission('ADMINISTRATOR')) {
+    if (msg.member.hasPermission('ADMINISTRATOR')) {
       msg.channel.bulkDelete(parseInt(msg.content.split(' ')[2]) + 1)
     } else {
       msg.channel.send(getErrorEmbed('권한이 없습니다. 관리자 권한을 획득하세요.'))
     }
-    
   }
 }

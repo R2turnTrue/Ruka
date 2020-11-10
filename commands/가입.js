@@ -20,34 +20,33 @@ module.exports.onCommand = async (client, msg) => {
         return
       }
     }
-    let newCaptcha = captcha()
-    let value = newCaptcha.value
+    const newCaptcha = captcha()
+    const value = newCaptcha.value
     console.log(value)
-    let imagebase64 = newCaptcha.image
+    const imagebase64 = newCaptcha.image
     msg.channel.send(new discord.MessageAttachment(Buffer.from(imagebase64.replace('data:image/jpeg;base64,', ''), 'base64'))).then((mesg) => {
-      const filter = m => m.author.id == msg.author.id;
-      msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time']})
-      .then(collected => {
-        if(collected.first().content == value) {
-          fu.register(msg.author.id, msg.author.tag, (status) => {
-            if (status.error !== undefined) {
-              const embed = getErrorEmbed('`' + status.error + '`')
-              msg.channel.send(embed)
-              return
-            }
+      const filter = m => m.author.id == msg.author.id
+      msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
+        .then(collected => {
+          if (collected.first().content == value) {
+            fu.register(msg.author.id, msg.author.tag, (status) => {
+              if (status.error !== undefined) {
+                const embed = getErrorEmbed('`' + status.error + '`')
+                msg.channel.send(embed)
+                return
+              }
 
-            msg.channel.send(getSuccessEmbed('성공적으로 가입되었습니다.'))
-          })
-        } else {
-          msg.channel.send(getErrorEmbed('캡챠가 맞지 않습니다.'))
-        }
-      })
-      .catch(collected => {
-        
-      })
-      
+              msg.channel.send(getSuccessEmbed('성공적으로 가입되었습니다.'))
+            })
+          } else {
+            msg.channel.send(getErrorEmbed('캡챠가 맞지 않습니다.'))
+          }
+        })
+        .catch(collected => {
+
+        })
     })
-    
+
     // msg.channel.send('<a:check:774797069138657290> 성공적으로 가입되었습니다.')
   })
 }
