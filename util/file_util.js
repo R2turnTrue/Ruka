@@ -16,6 +16,14 @@ module.exports.getDB = (userid, callback) => {
   }
 }
 
+module.exports.exist = (userid, usertag, callback) => {
+  if (fs.existsSync('./data/' + userid + '.json')) {
+    callback({ error: 'already_exists' })
+  } else {
+    callback({ status: 'ok' })
+  }
+}
+
 module.exports.register = (userid, usertag, callback) => {
   if (fs.existsSync('./data/' + userid + '.json')) {
     callback({ error: 'already_exists' })
