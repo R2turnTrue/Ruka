@@ -1,5 +1,5 @@
 const fs = require('fs')
-const datatemplate = { userid: '', nickname: '', level: 1, exp: 0, money: 0, dobak_machine_num: 0 }
+const datatemplate = { userid: '', nickname: '', level: 1, exp: 0, money: 0, dobak_machine_num: 0, hungry: 10 }
 
 module.exports.getDB = (userid, callback) => {
   if (fs.existsSync('./data/' + userid + '.json')) {
