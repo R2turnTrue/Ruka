@@ -19,6 +19,22 @@ client.once('ready', () => {
   console.log('디스코드 봇이 준비되었습니다')
 })
 
+client.on('guildMemberAdd', (member) => {
+  console.log('joined')
+  if (fs.existsSync(`./data/guild_join_channel_${member.guild.id}.txt`) && fs.existsSync(`./data/guild_join_message_${member.guild.id}.txt`)) {
+    fs.readFile(`./data/guild_join_message_${member.guild.id}.txt`, (err, data) => {
+      if (!err) {
+        fs.readFile(`./data/guild_join_channel_${member.guild.id}.txt`, (err2, dataa) => {
+          if(!err2) {
+            client.channels.cache.find(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
+            //member.guild.channels.cache.find(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
+          }//
+        })
+      }
+    })
+  }
+})
+
 client.on('message', (msg) => {
   if (msg.author.bot) return
   if (msg.channel.type === 'dm') {
