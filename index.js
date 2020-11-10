@@ -13,7 +13,7 @@ const { isInputedThatCommand, getErrorEmbed, getSuccessEmbed } = require('./util
 // 이 이벤트는 봇이 로그인 되고 한번만 실행될것입니다
 client.once('ready', () => {
   client.user.setActivity({
-    name: `${client.guilds.cache.size}개의 서버에 사용되고있어요! | 프사 콘테스트 진행중! 자세한 정보는 https://discord.gg/F3sJTkWxQX 에서 확인하세요!`,
+    name: `${client.guilds.cache.size}개의 서버에 사용되고있어요! | 개발버전 | 프사 콘테스트 진행중! 자세한 정보는 https://discord.gg/F3sJTkWxQX 에서 확인하세요!`,
     type: 'PLAYING'
   })
   console.log('디스코드 봇이 준비되었습니다')
