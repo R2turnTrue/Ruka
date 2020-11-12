@@ -26,6 +26,11 @@ module.exports.onCommand = (client, msg) => {
           msg.channel.send('하루 도박 제한에 도달해서 도박을 할 수 없습니다. 내일 다시 와주세요! :)')
           return
         }
+
+        if(result.hungry === 50) {
+            msg.channel.send('배가 고파서 일을 할 수 없습니다. 편의점에 가서 음식을 먹고 와주세요.')
+            return
+        }
     
         msg.channel.send('할 일을 3초 안에 골라주세요.\n:one:: 광질').then((mesg) => {
           mesg.react('1️⃣')
@@ -44,7 +49,22 @@ module.exports.onCommand = (client, msg) => {
                 collector.on('collect', (reacti, usr) => {
                     wone += 10
                     meesg.edit('15초 안에 클릭한 횟수만큼 돈을 획득합니다! 벌 수 있는 돈: ' + wone + '원')
-                    reacti.remove()
+                    meesg.reactions.resolve('⛏️').users.remove(msg.member.id)
+                })
+
+                collector.on('end', (collected, reason) => {
+                    meesg.delete()
+                    meesg.channel.send('💰 ' + wone + '원을 벌었습니다.')
+
+                    let newdata = result
+                    result.money += wone
+                    result.hungry += 10
+
+                    fu.update(newdata, msg.member.id, (res2) => {
+                        if(res2.error !== undefined) {
+                            meesg.channel.send(getErrorEmbed('`' + res2.error + '`'))
+                        }
+                    })
                 })
             })
           })

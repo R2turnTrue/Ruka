@@ -22,12 +22,13 @@ client.once('ready', () => {
 client.on('guildMemberAdd', (member) => {
   console.log('joined')
   if (fs.existsSync(`./data/guild_join_channel_${member.guild.id}.txt`) && fs.existsSync(`./data/guild_join_message_${member.guild.id}.txt`)) {
-    fs.readFile(`./data/guild_join_message_${member.guild.id}.txt`, (err, data) => {
+    fs.readFile(`./data/guild_join_message_${member.guild.id}.txt`, 'utf8', (err, data) => {
       if (!err) {
-        fs.readFile(`./data/guild_join_channel_${member.guild.id}.txt`, (err2, dataa) => {
+        fs.readFile(`./data/guild_join_channel_${member.guild.id}.txt`, 'utf8', (err2, dataa) => {
           if(!err2) {
-            client.channels.cache.find(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
+            //client.channels.cache.get(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
             //member.guild.channels.cache.find(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
+            member.guild.channels.cache.find(channel => channel.id == dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
           }//
         })
       }
