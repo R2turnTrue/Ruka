@@ -154,4 +154,4 @@ list.forEach((elem) => {
 })
 
 // 디스코드 토큰으로 디스코드에 로그인합니다
-client.login('NzczMTUzMzcyNTkyNTM3NjIx.X6FFMA.kmLO6bC90K9lmsVDG0CZAhU-isE') // 네?
+client.login(require('./token.json').token) // 네?
