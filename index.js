@@ -2,6 +2,11 @@ const discord = require('discord.js')
 const fs = require('fs')
 const path = require('path')
 
+/**
+ * @type {import("express.js")}
+ */
+const Express = require('express.js')
+
 const client = new discord.Client()
 
 const commands = []
@@ -47,101 +52,6 @@ client.on('message', (msg) => {
       elem.onCommand(client, msg)
     }
   })
-
-  /*
-    if(isInputedThatCommand(msg.content, '클리어') && !isNaN(parseInt(msg.content.split(' ')[2]))) {
-        msg.channel.bulkDelete(parseInt(msg.content.split(' ')[2]) + 1)
-    }
-
-    if(msg.author !== client.user) {
-        if(isInputedThatCommand(msg.content, '퐁')) {
-            msg.channel.send('퐁!');
-        }
-    }
-
-    if (isInputedThatCommand(msg.content, '내정보')) {
-        fu.getDB(msg.member.id, (result) => {
-            if(result.error !== undefined) {
-                if(result.error === 'nodata') {
-                    msg.channel.send('가입을 먼저 진행해주세요. `!가입`')
-                    return
-                }
-                msg.channel.send('오류가 발생하였습니다. `' + result.error + '`')
-                return
-            }
-
-            //msg.channel.send(JSON.stringify(result))
-
-            const embed = new discord.MessageEmbed()
-            .setTitle('A slick little embed')
-            // Set the color of the embed
-            .setColor(0xff0000)
-
-            // Set the main content of the embed
-            .setDescription('Hello, this is a slick embed!');
-            // Send the embed to the same channel as the message
-            msg.channel.send(embed);
-        })
-
-    }
-
-    if (isInputedThatCommand(msg.content, '가입')) {
-        const result = fu.register(msg.member.id, msg.author.tag, (result) => {
-            if(result.error !== undefined) {
-                if(result.error === 'already_exists') {
-                    const embed = getErrorEmbed('이미 가입되어있습니다!')
-                    msg.channel.send(embed);
-                    return
-                } else {
-                    const embed = getErrorEmbed('`' + result.error + '`')
-                    msg.channel.send(embed);
-                    //msg.channel.send('오류가 발생하였습니다. `' + result.error + '`')
-                    return
-                }
-            }
-            msg.channel.send(getSuccessEmbed('성공적으로 가입되었습니다.'))
-            //msg.channel.send('<a:check:774797069138657290> 성공적으로 가입되었습니다.')
-        })
-
-    }
-
-    if (isInputedThatCommand(msg.content, '도박')) {
-
-    }
-
-    if (isInputedThatCommand(msg.content, '프사')) {
-        // Send the user's avatar URL
-        msg.channel.send(msg.author.displayAvatarURL());
-    }
-
-    if(isInputedThatCommand(msg.content, '임배드')) {
-        const embed = new discord.MessageEmbed()
-            .setTitle('A slick little embed')
-            // Set the color of the embed
-            .setColor(0xff0000)
-
-            // Set the main content of the embed
-            .setDescription('Hello, this is a slick embed!');
-        // Send the embed to the same channel as the message
-        msg.channel.send(embed);
-      }
-
-      if(isInputedThatCommand(msg.content, '현재시각')) {
-            let date = new Date()
-            const embed = new discord.MessageEmbed()
-            .setTitle('현재 시각입니다. (서버 위치 기준)')
-            .setColor(0xff0000)
-            .setDescription(`${date.getHours()}시 ${date.getMinutes()}분 ${date.getSeconds()}초`)
-            /*
-            .addField('시', date.getHours())
-            .addField('분', date.getMinutes())
-            .addField('초', date.getSeconds())
-            msg.channel.send(embed);
-            //msg.channel.send(`${date.getHours()}시 ${date.getMinutes()}분 ${date.getSeconds()}초`)
-        }
-
-        // 여기 안쪽에 적어주세요 :)
-        */
 })
 
 console.log('명령어 로딩중...')
@@ -155,3 +65,7 @@ list.forEach((elem) => {
 
 // 디스코드 토큰으로 디스코드에 로그인합니다
 client.login(require('./token.json').token) // 네?
+
+console.log('[WEB] web process ready')
+
+app.use(express.static())
