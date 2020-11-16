@@ -1,11 +1,8 @@
 const discord = require('discord.js')
 const fs = require('fs')
 const path = require('path')
-
-/**
- * @type {import("express.js")}
- */
-const Express = require('express.js')
+const Express = require('express')
+let app = Express()
 
 const client = new discord.Client()
 
@@ -66,6 +63,7 @@ list.forEach((elem) => {
 // 디스코드 토큰으로 디스코드에 로그인합니다
 client.login(require('./token.json').token) // 네?
 
-console.log('[WEB] web process ready')
-
-app.use(express.static())
+app.use(Express.static(path.join(__dirname, 'public')))
+app.listen(8888, () => {
+  console.log('[WEB] web process ready')
+})
