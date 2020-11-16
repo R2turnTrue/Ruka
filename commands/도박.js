@@ -86,7 +86,7 @@ function buy (client, msg, money) {
       const ran1 = Math.floor(Math.random() * 100)
       console.log(ran1)
 
-      if (ran1 > 50) { // 50%
+      if (ran1 >= 50) { // 50%
         msg.channel.send('당첨되었습니다! 돈을 더 획득합니다!')
         const newdata = result
         newdata.money += money
