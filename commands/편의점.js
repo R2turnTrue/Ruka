@@ -32,11 +32,11 @@ module.exports.onCommand = (client, msg) => {
           const collector2 = mesg.createReactionCollector(f2, { time: 10000 }) // 빈응 컬렉터 생성
     
           collector1.on('collect', (reaction, user) => {
-            buy('닭다리', 150, 25, result)
+            buy('닭다리', 150, 25, result, msg.member.id, msg)
           })
 
           collector2.on('collect', (reaction, user) => {
-            buy('햄버거', 300, 50, result)
+            buy('햄버거', 300, 50, result, msg.member.id, msg)
           })
         })
       })
@@ -48,7 +48,24 @@ module.exports.onCommand = (client, msg) => {
  * @param {Number} cost
  * @param {Number} full
  * @param {*} nowresult
+ * @param {String} id
+ * @param {discord.Message} msg
  */
-function buy(name, cost, full, nowresult) {
+function buy(name, cost, full, nowresult, id, msg) {
+  if(nowresult.money >= cost) {
+    let now = nowresult
+    now.money -= cost
+    now.hungry -= full
+    if(now.hungry < 0) {
+      now.hungry = 0
+    }
 
+    fu.update(now, id, (res) => {
+      if(res.error !== undefined) {
+        msg.channel.send(getErrorEmbed('`' + res.error + '`'))
+        return
+      }
+      msg.channel.send(getSuccessEmbed(`${name}을 구매해 ${full} 만큼 배불러졌습니다!\n` + '```diff\n- 돈💰 ' + cost + '\n- 배고픔🍗 ' + full + '\n```'))
+    })
+  }
 }
