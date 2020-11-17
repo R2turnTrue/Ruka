@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    background-color: #2C2F33;
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    background-color: #23272A;
+    list-style-type: none;
+}
+
+.nav-container li {
+    padding: 15px;
+    cursor: pointer;
+}
+.nav-container li a {
+    text-decoration: none;
+    padding: 15px;
+    cursor: pointer;
+    color: white;
+}
+
+.p24 {
+    font-size: 24px;
+}
+
+.other-nav-item {
+    padding-top: 30px;
+}
+
+.button-big {
+    background: linear-gradient(to left, #e66465, #9198e5);
+    color: white;
+    text-decoration: none;
+    padding: 30px;
+    padding-left: 80px;
+    padding-right: 80px;
+    border-radius: 50px;
+    font-size: 24px;
+}
+
+.button-big:hover {
+    background: linear-gradient(to right, #e66465, #9198e5);
+}
+
+section {
+    margin-top: 80px;
+    margin-left: 30px;
+    text-align: center;
+}
+
+.maintxt {
+    margin-bottom: 30px;
+    font-weight: normal;
+    font-size: 48px;
+}
+
+.sogae-list {
+    margin-top: 80px;
+}
+
+footer {
+    background-color: #23272A;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
