@@ -21,11 +21,6 @@ module.exports.onCommand = (client, msg) => {
           msg.channel.send(getErrorEmbed('오류가 발생하였습니다. `' + result.error + '`'))
           return
         }
-    
-        if (result.dobak_machine_num === 3) {
-          msg.channel.send('하루 도박 제한에 도달해서 도박을 할 수 없습니다. 내일 다시 와주세요! :)')
-          return
-        }
 
         if(result.hungry === 50) {
             msg.channel.send('배가 고파서 일을 할 수 없습니다. 편의점에 가서 음식을 먹고 와주세요.')
