@@ -2,7 +2,7 @@ const discord = require('discord.js')
 const fs = require('fs')
 const path = require('path')
 const Express = require('express')
-let app = Express()
+const app = Express()
 
 const client = new discord.Client()
 
@@ -27,9 +27,9 @@ client.on('guildMemberAdd', (member) => {
     fs.readFile(`./data/guild_join_message_${member.guild.id}.txt`, 'utf8', (err, data) => {
       if (!err) {
         fs.readFile(`./data/guild_join_channel_${member.guild.id}.txt`, 'utf8', (err2, dataa) => {
-          if(!err2) {
-            //client.channels.cache.get(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
-            //member.guild.channels.cache.find(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
+          if (!err2) {
+            // client.channels.cache.get(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
+            // member.guild.channels.cache.find(dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
             member.guild.channels.cache.find(channel => channel.id == dataa).send(data.replace('{usermention}', '<@' + member.id + '>'))
           }//
         })

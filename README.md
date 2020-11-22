@@ -1,13 +1,13 @@
-# 토큰
-token.json에 토큰을 적으세요
-
-```json
-{
-    "token": "토큰"
-}
-```
-
-## 토큰목록
-
-개발버전(개발하실때는 꼭 이걸 쓰세요): `Nzc2NDE1OTMzOTEyMTg2ODgx.X60jrw.DO1MD04GJLEaPeLZjlVZpUN0zes`
-배포버전(되도록이면 이거 쓰지 마세요): `NzczMTUzMzcyNTkyNTM3NjIx.X6FFMA.kmLO6bC90K9lmsVDG0CZAhU-isE`
+note: There isn't a English README. Please understand that.
+# 루카(ruka)
+[사이트에서 초대하세요](https://rukabot.ga)
+게임, 관리, 유틸 기능 등이 있는 디스코드 봇입니다.
+## 명령어
+명령어들의 프리픽스는 r, ㄹ, 루카야 입니다.
+## 기여
+이 프로젝트는 누구나 PR(Pull Request)로 기여할 수 있습니다.\
+단, Standard.js를 지켜주시기 바랍니다.\
+\
+\
+\
+Copyright (c) 2020. NamuTree0345, Ram927. All right reserved.
