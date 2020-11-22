@@ -8,6 +8,7 @@ note: There isn't a English README. Please understand that.
 ## 기여
 이 프로젝트는 누구나 PR(Pull Request)로 기여할 수 있습니다.\
 단, Standard.js를 지켜주시기 바랍니다.\
++ 예전 커밋 보시고 토큰 때어가시는 분 계신데 토큰 변경하였습니다
 \
 \
 \
