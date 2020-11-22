@@ -58,6 +58,12 @@ section {
     text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+    section img {
+        width: 80%;
+    }
+}
+
 .maintxt {
     margin-bottom: 30px;
     font-weight: normal;
