@@ -2,6 +2,7 @@
 
 const discord = require('discord.js')
 module.exports.name = '돈벌기'
+module.exports.category = 'game'
 
 const { getErrorEmbed, getSuccessEmbed } = require('../util/command_util')
 const fu = require('../util/file_util')

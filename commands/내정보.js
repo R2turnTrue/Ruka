@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 module.exports.name = '내정보'
+module.exports.category = 'profile'
 
 const { getErrorEmbed, getSuccessEmbed } = require('../util/command_util')
 const fu = require('../util/file_util')

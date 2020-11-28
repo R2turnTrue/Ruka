@@ -46,7 +46,7 @@ client.on('message', (msg) => {
 
   commands.forEach((elem) => {
     if (isInputedThatCommand(msg.content, elem.name)) {
-      elem.onCommand(client, msg)
+      elem.onCommand(client, msg, commands)
     }
   })
 })

@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 const name = 'NAME'
+module.exports.category = 'util'
 
 const cu = require('../util/command_util')
 const fu = require('../util/file_util')

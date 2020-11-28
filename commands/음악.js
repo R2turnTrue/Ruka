@@ -1,6 +1,7 @@
 const discord = require('discord.js')
 const ytdl = require('ytdl-core')
 module.exports.name = '음악'
+module.exports.category = 'util'
 
 const queueSrv = new Map()
 

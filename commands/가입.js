@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 module.exports.name = '가입'
+module.exports.category = 'profile'
 
 const captcha = require('nodejs-captcha')
 

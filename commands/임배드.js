@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 module.exports.name = '임배드'
+module.exports.category = 'test'
 
 const { getErrorEmbed, getSuccessEmbed } = require('../util/command_util')
 const fu = require('../util/file_util')

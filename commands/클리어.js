@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 module.exports.name = '클리어'
+module.exports.category = 'admin'
 
 const { getErrorEmbed, getSuccessEmbed } = require('../util/command_util')
 const fu = require('../util/file_util')

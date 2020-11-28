@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 module.exports.name = '현재시각'
+module.exports.category = 'util'
 
 const { getErrorEmbed, getSuccessEmbed } = require('../util/command_util')
 const fu = require('../util/file_util')
