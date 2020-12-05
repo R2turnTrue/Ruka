@@ -29,7 +29,7 @@ module.exports.onCommand = (client, msg) => {
       .setColor(0x00ff00)
 
     // Set the main content of the embed
-      .setDescription('```✏ 닉네임: ' + result.nickname + '\n💡 봇 사용 레벨/경험치: ' + result.level + result.exp + '\n💰 돈: ' + result.money + '\n✨ 하루에 도박을 한 횟수: ' + result.dobak_machine_num + '/5\n🍗 배고픔: ' + result.hungry + '/50\n```')
+      .setDescription('```✏ 닉네임: ' + result.nickname + '\n💡 봇 사용 레벨/경험치: ' + result.level + '/' + result.exp + '\n💰 돈: ' + result.money + '\n✨ 하루에 도박을 한 횟수: ' + result.dobak_machine_num + '/5\n🍗 배고픔: ' + result.hungry + '/50\n```')
     // Send the embed to the same channel as the message
     msg.channel.send(embed)
   })
