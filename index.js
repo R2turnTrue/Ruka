@@ -67,3 +67,44 @@ app.use(Express.static(path.join(__dirname, 'public')))
 app.listen(8888, () => {
   console.log('[WEB] web process ready')
 })
+
+// 도박 초기화
+setInterval(() => {
+  let d = new Date()
+  if(
+    d.getHours() == 0 &&
+    d.getMinutes() == 0 &&
+    d.getSeconds() == 1
+  ) {
+
+    fs.readdir('./data', (err1, f) => {
+      if (err1)
+        console.error(err2)
+      f.forEach((elem) => {
+
+        if(elem.endsWith('.json')) {
+          fs.readFile('./data/' + elem, 'utf8', (err2, data) => {
+            if (err2)
+              console.error(err2)
+            console.log(data)
+            let r = JSON.parse(data)
+            //let r = require('./data/' + elem)
+            if (r.dobak_machine_num != undefined && r.dobak_machine_num != 0) {
+              r.dobak_machine_num = 0
+              fs.writeFile('./data/' + elem, JSON.stringify(r), (err3) => {
+                if (err3)
+                  console.error(err2)
+  
+                console.log('successfuly reseted ' + elem)
+              })
+            }
+          })
+        }
+
+        
+
+      })
+    })
+
+  }
+}, 500)
