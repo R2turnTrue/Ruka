@@ -14,7 +14,7 @@ module.exports.onCommand = (client, msg) => {
   fu.getDB(msg.member.id, (result) => {
     if (result.error !== undefined) {
       if (result.error === 'nodata') {
-        msg.channel.send('가입을 먼저 진행해주세요. `!가입`')
+        msg.channel.send('가입을 먼저 진행해주세요. `ㄹ 가입`')
         return
       }
       msg.channel.send('오류가 발생하였습니다. `' + result.error + '`')

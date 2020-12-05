@@ -14,7 +14,7 @@ module.exports.onCommand = (client, msg) => {
   fu.getDB(msg.member.id, (result) => {
     if (result.error !== undefined) {
       if (result.error === 'nodata') {
-        msg.channel.send(getErrorEmbed('가입을 먼저 진행해주세요. `!가입`'))
+        msg.channel.send(getErrorEmbed('가입을 먼저 진행해주세요. `ㄹ 가입`'))
         return
       }
       msg.channel.send(getErrorEmbed('오류가 발생하였습니다. `' + result.error + '`'))
@@ -26,23 +26,23 @@ module.exports.onCommand = (client, msg) => {
       return
     }
 
-    msg.channel.send('돈을 3초안에 선택해 걸어주세요.\n:one:: 100원\n:two:: 1000원\n:three:: 5000원\n:four:: 10000원').then((mesg) => {
+    msg.channel.send('돈을 1분안에 선택해 걸어주세요.\n:one:: 100원\n:two:: 1000원\n:three:: 5000원\n:four:: 10000원').then((mesg) => {
       mesg.react('1️⃣')
       mesg.react('2️⃣')
       mesg.react('3️⃣')
       mesg.react('4️⃣')
 
       const f1 = (reaction, user) => reaction.emoji.name === '1️⃣' && user.id === msg.author.id
-      const collector1 = mesg.createReactionCollector(f1, { time: 3000 }) // 빈응 컬렉터 생성
+      const collector1 = mesg.createReactionCollector(f1, { time: 60000 }) // 빈응 컬렉터 생성
 
       const f2 = (reaction, user) => reaction.emoji.name === '2️⃣' && user.id === msg.author.id
-      const collector2 = mesg.createReactionCollector(f2, { time: 3000 }) // 빈응 컬렉터 생성
+      const collector2 = mesg.createReactionCollector(f2, { time: 60000 }) // 빈응 컬렉터 생성
 
       const f3 = (reaction, user) => reaction.emoji.name === '3️⃣' && user.id === msg.author.id
-      const collector3 = mesg.createReactionCollector(f3, { time: 3000 }) // 빈응 컬렉터 생성
+      const collector3 = mesg.createReactionCollector(f3, { time: 60000 }) // 빈응 컬렉터 생성
 
       const f4 = (reaction, user) => reaction.emoji.name === '4️⃣' && user.id === msg.author.id
-      const collector4 = mesg.createReactionCollector(f4, { time: 3000 }) // 빈응 컬렉터 생성
+      const collector4 = mesg.createReactionCollector(f4, { time: 60000 }) // 빈응 컬렉터 생성
 
       collector1.on('collect', (reaction, user) => {
         buy(client, msg, 100)
@@ -70,7 +70,7 @@ function buy (client, msg, money) {
   fu.getDB(msg.author.id, (result) => {
     if (result.error !== undefined) {
       if (result.error === 'nodata') {
-        msg.channel.send(getErrorEmbed('가입을 먼저 진행해주세요. `!가입`'))
+        msg.channel.send(getErrorEmbed('가입을 먼저 진행해주세요. `ㄹ 가입`'))
         return
       }
       msg.channel.send(getErrorEmbed('오류가 발생하였습니다. `' + result.error + '`'))
