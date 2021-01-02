@@ -12,4 +12,4 @@ note: There isn't a English README. Please understand that.
 \
 \
 \
-Copyright (c) 2020. NamuTree0345, Ram927. All right reserved.
+Copyright (c) 2021. NamuTree0345, Ram927. All right reserved.
